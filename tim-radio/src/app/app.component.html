@@ -294,8 +294,15 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Słuchaj</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Słuchaj
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">Serwer 1</a>
+          <a class="dropdown-item" href="#">Serwer 2</a>
+          <a class="dropdown-item" href="#">Serwer 3</a>
+        </div>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Ramówka</a>
@@ -439,6 +446,31 @@
       </svg>
     </a>
   </div>
+
+  <p>Ramówka:</p>
+  <table>
+    <thead>
+      <th>Poniedziałek</th>
+      <th>Wtorek</th>
+      <th>Środa</th>
+      <th>Czwartek</th>
+      <th>Piątek</th>
+      <th>Sobota</th>
+      <th>Niedziela</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let program of radioProgramModel">
+  
+        <td>{{program.monday}}</td>
+        <td>{{program.tuesday}}</td>
+        <td>{{program.wednesday}}</td>
+        <td>{{program.thursday}}</td>
+        <td>{{program.friday}}</td>
+        <td>{{program.saturday}}</td>
+        <td>{{program.sunday}}</td>
+      </tr>
+    </tbody>
+  </table>
 
   <!-- Footer -->
   <footer>

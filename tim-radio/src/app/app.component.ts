@@ -1,3 +1,5 @@
+import { RadioProgram } from './radio-program.model';
+import { RadioProgramService } from './radio-program.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +8,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  title = 'tim-radio';
+
+  radioProgramModel: Array<RadioProgram> = [];
+
+  constructor(private radioProgram: RadioProgramService) { }
+
+  ngOnInit() {
+    this.radioProgram.getRadioProgram().subscribe((data: any) => {
+      this.radioProgramModel = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          ...e.payload.doc.data()
+        } as RadioProgram
+      })
+    });
+
+  }
+
 }
