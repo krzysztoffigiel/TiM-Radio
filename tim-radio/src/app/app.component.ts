@@ -14,6 +14,8 @@ export class AppComponent {
   constructor(private radioProgram: RadioProgramService) { }
 
   ngOnInit() {
+
+    // radio program reading
     this.radioProgram.getRadioProgram().subscribe((data: any) => {
       this.radioProgramModel = data.map(e => {
         return {
