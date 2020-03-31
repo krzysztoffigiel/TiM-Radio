@@ -9,22 +9,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  radioProgramModel: Array<RadioProgram> = [];
+  
 
-  constructor(private radioProgram: RadioProgramService) { }
+  constructor() { }
 
-  ngOnInit() {
+  
 
-    // radio program reading
-    this.radioProgram.getRadioProgram().subscribe((data: any) => {
-      this.radioProgramModel = data.map(e => {
-        return {
-          id: e.payload.doc.id,
-          ...e.payload.doc.data()
-        } as RadioProgram
-      })
-    });
-
-  }
+  
 
 }

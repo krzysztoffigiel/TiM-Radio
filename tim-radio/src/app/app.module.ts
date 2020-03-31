@@ -10,16 +10,26 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { environment } from 'src/environments/environment';
 import { AngularFirestore } from '@angular/fire/firestore';
 
+import { HttpClientModule } from '@angular/common/http';
+import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AdminLoginComponent,
+    DashboardComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    HttpClientModule,
+    
   ],
   providers: [
     Title,
