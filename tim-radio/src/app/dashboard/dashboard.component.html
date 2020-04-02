@@ -1,104 +1,120 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href=#><img src="./../assets/img/timradio-logo.png" alt="tim radio logo"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Słuchaj
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="http://s3.slotex.pl:7708/listen.pls?sid=1">Winamp</a>
-              <a class="dropdown-item" href="http://s3.slotex.pl:7708/listen.m3u?sid=1">M3U</a>
-              <a class="dropdown-item" href="http://s3.slotex.pl:7708/listen.asx?sid=1">Windows Media Player</a>
-              <a class="dropdown-item" href="http://s3.slotex.pl:7708/listen.xspf?sid=1">VLC Media Player</a>
-              <a class="dropdown-item" href="http://s3.slotex.pl:7708/listen.xtl?sid=1">QuickTime Player</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Ramówka</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Nasi grający</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Zamów kawałek</a>
-          </li>
-        </ul>
-      </div>
+<nav id="tim-navbar" class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href=#><img src="./../assets/img/timradio-logo.png" alt="tim radio logo"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+      aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="nav navbar-nav ml-auto nav nav-pills">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Słuchaj
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="http://s3.slotex.pl:7708/listen.pls?sid=1">Winamp</a>
+            <a class="dropdown-item" href="http://s3.slotex.pl:7708/listen.m3u?sid=1">M3U</a>
+            <a class="dropdown-item" href="http://s3.slotex.pl:7708/listen.asx?sid=1">Windows Media Player</a>
+            <a class="dropdown-item" href="http://s3.slotex.pl:7708/listen.xspf?sid=1">VLC Media Player</a>
+            <a class="dropdown-item" href="http://s3.slotex.pl:7708/listen.xtl?sid=1">QuickTime Player</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#our-djs">Nasi grający</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#whats-played">Ramówka</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#order-a-song">Zamów kawałek</a>
+        </li>
+      </ul>
     </div>
-  </nav>
-  
-  <header class="masthead">
-    <div class="container h-100">
-      <div class="row h-100 align-items-center">
-        <div class="col-12 text-center masthead-content">
-          <h1 class="hello-text font-weight-light">#zostańwdomu i słuchaj nas online</h1>
-          <p>Zajrzyj na aktualną <a href="">ramówkę</a></p>
-          <audio controls duration="true"  preload="none">
-            <source src="http://s3.slotex.pl:7708/stream/1/;?type=http"></audio>
-        </div>
-      </div>
-    </div>
-  </header>
+  </div>
+</nav>
 
-  <section class="our-djs">
-    <div class="d-md-flex h-md-100 align-items-center">
-      <div class="col-md-6 p-0 bg-danger h-md-100">
-        <div class="d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
-          <div class="logoarea pt-5 pb-5">
-            <h2 class="font-weight-light text-white">Nasi grający</h2>
-            <h3 class="text-white">Waldmix</h3>
-            <p class="text-white">Założyciel Radia TiM. Miłośnik włoskiej muzyki i chińskiego jedzenia. Namiętny słuchacz disco, wielbiciel zwierząt, w szczególności jego psa - Bandziora. 
-              W radiach gościnnie od prawie trzech lat. DJ od ponad trzydziestu wiosen. Zamiłowanie do grania w radiu zawdzięcza DJ'owi Krisowi z Radia80 oraz DJ'owi Marchewie.</p>
-          </div>
+<header class="masthead">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-12 text-center masthead-content">
+        <h1 class="hello-text font-weight-light">#zostańwdomu i słuchaj nas online</h1>
+        <p>Zajrzyj na aktualną <a href="">ramówkę</a></p>
+        <audio controls duration="true" preload="none">
+          <source src="http://s3.slotex.pl:7708/stream/1/;?type=http"></audio>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="our-djs">
+  <div class="d-md-flex h-md-100 align-items-center">
+    <div class="col-md-6 p-0 bg-danger h-md-100">
+      <div class="d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
+        <div class="pt-5 pb-5">
+          <h1 class="display-4 font-weight-light text-white">Nasz skład</h1>
+          <p class="text-white our-djs-description">Zespół TiM Radio to ludzie z wieloletnim doświadczeniem w branży muzycznej. 
+            Tworzą go ludzie z pasją do muzyki, dzieląc się nią z słuchaczami każdego dnia. </p>
         </div>
       </div>
-      <div class="col-md-6 p-0 bg-danger h-md-100">
-        <div class="d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
-          <div class="logoarea pt-5 pb-5">
-            <img class="" src="./../../assets/img/waldmix-foto.jpeg" alt="waldek waldmix dj">
+    </div>
+    <div class="col-md-6 p-0 bg-danger h-md-100">
+      <div class="d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
+        <div class="pt-5 pb-5">
+          <div class="card mb-3" >
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img src="./../../assets/img/waldmix-foto.jpeg" class="card-img" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h3 class="card-title">Waldek Waldmix</h3>
+                  <div class="divider"></div>
+                  <p class="card-text italic">"Założyciel Radia TiM. Miłośnik włoskiej muzyki i chińskiego jedzenia. Namiętny
+                    słuchacz disco, wielbiciel zwierząt, w szczególności jego psa - Bandziora.
+                    W radiach gościnnie od prawie trzech lat. DJ od ponad trzydziestu wiosen. Zamiłowanie do grania w radiu
+                    zawdzięcza DJ'owi Krisowi z Radia80 oraz DJ'owi Marchewie"</p>
+                  <p class="card-text"><small class="text-muted">02.04.2020</small></p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  
-  <section class="py-5">
-    <div class="container">
-      <h2 class="font-weight-light">Ramówka</h2>
-      <div class="table-responsive">
-        <table class="table">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">#</th>
-              <th>Poniedziałek</th>
-              <th>Wtorek</th>
-              <th>Środa</th>
-              <th>Czwartek</th>
-              <th>Piątek</th>
-              <th>Sobota</th>
-              <th>Niedziela</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let program of radioProgramModel">
-              <th scope="row">1</th>
-              <td>{{program.monday}}</td>
-              <td>{{program.tuesday}}</td>
-              <td>{{program.wednesday}}</td>
-              <td>{{program.thursday}}</td>
-              <td>{{program.friday}}</td>
-              <td>{{program.saturday}}</td>
-              <td>{{program.sunday}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <h2 class="font-weight-light">Ramówka</h2>
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th>Poniedziałek</th>
+            <th>Wtorek</th>
+            <th>Środa</th>
+            <th>Czwartek</th>
+            <th>Piątek</th>
+            <th>Sobota</th>
+            <th>Niedziela</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let program of radioProgramModel">
+            <th scope="row">1</th>
+            <td>{{program.monday}}</td>
+            <td>{{program.tuesday}}</td>
+            <td>{{program.wednesday}}</td>
+            <td>{{program.thursday}}</td>
+            <td>{{program.friday}}</td>
+            <td>{{program.saturday}}</td>
+            <td>{{program.sunday}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  </section>
+  </div>
+</section>
