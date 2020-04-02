@@ -54,7 +54,7 @@
         <div class="pt-5 pb-5">
           <h1 class="display-4 font-weight-light text-white">Nasz skład</h1>
           <p class="text-white our-djs-description">Zespół TiM Radio to ludzie z wieloletnim doświadczeniem w branży muzycznej. 
-            Tworzą go ludzie z pasją do muzyki, dzieląc się nią z słuchaczami każdego dnia. </p>
+            Tworzą go osoby z pasją do muzyki, dzieląc się nią z słuchaczami każdego dnia. </p>
         </div>
       </div>
     </div>
@@ -86,35 +86,109 @@
 </section>
 
 <section class="py-5">
-  <div class="container">
-    <h2 class="font-weight-light">Ramówka</h2>
-    <div class="table-responsive">
-      <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">#</th>
-            <th>Poniedziałek</th>
-            <th>Wtorek</th>
-            <th>Środa</th>
-            <th>Czwartek</th>
-            <th>Piątek</th>
-            <th>Sobota</th>
-            <th>Niedziela</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let program of radioProgramModel">
-            <th scope="row">1</th>
-            <td>{{program.monday}}</td>
-            <td>{{program.tuesday}}</td>
-            <td>{{program.wednesday}}</td>
-            <td>{{program.thursday}}</td>
-            <td>{{program.friday}}</td>
-            <td>{{program.saturday}}</td>
-            <td>{{program.sunday}}</td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="container text-center">
+    <h1>Ramówka</h1>
+    <div *ngFor="let program of radioProgramModel" class="accordion" id="accordionExample">
+      <div  class="card">
+        <div class="card-header" id="headingOne">
+          <h2 class="mb-0">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Poniedziałek
+            </button>
+          </h2>
+        </div>
+    
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+          <div class="card-body">
+            {{program.monday}}
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Wtorek
+            </button>
+          </h2>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+          <div class="card-body">
+            {{program.tuesday}}
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Środa
+            </button>
+          </h2>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+          <div class="card-body">
+            {{program.wednesday}}
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+              Czwartek
+            </button>
+          </h2>
+        </div>
+        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+          <div class="card-body">
+            {{program.thursday}}
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseThree">
+              Piątek
+            </button>
+          </h2>
+        </div>
+        <div id="collapseFive" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+          <div class="card-body">
+            {{program.friday}}
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseThree">
+              Sobota
+            </button>
+          </h2>
+        </div>
+        <div id="collapseSix" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+          <div class="card-body">
+            {{program.saturday}}
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseThree">
+              Niedziela
+            </button>
+          </h2>
+        </div>
+        <div id="collapseSeven" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+          <div class="card-body">
+            {{program.sunday}}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+  
 </section>
