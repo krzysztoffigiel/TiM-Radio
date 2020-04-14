@@ -11,7 +11,7 @@ export class AdminLoginComponent implements OnInit {
   constructor(public auth: AuthService) { }
 
   ngOnInit(): void {
-    this.auth.login('/administrator/dashboard');
+    this.auth.login();
   }
 
 }

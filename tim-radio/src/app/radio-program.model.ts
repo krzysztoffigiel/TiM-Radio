@@ -7,3 +7,4 @@ export class RadioProgram {
     saturday: string;
     sunday: string;
 }
+

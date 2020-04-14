@@ -15,12 +15,18 @@ import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CallbackComponent } from './callback/callback.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     AdminLoginComponent,
     DashboardComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    CallbackComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +35,7 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     HttpClientModule,
-    
+    FontAwesomeModule
   ],
   providers: [
     Title,
