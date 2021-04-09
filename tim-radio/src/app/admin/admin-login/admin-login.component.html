@@ -1,3 +1,72 @@
-<p>
-    Trwa przekierowywanie do panelu administratora...
-</p>
+<div class="container">
+    <div class="row">
+        <div class="col col-12">
+            <div class="card">
+                <h4 class="card-header">Logowanie - panel prezentera</h4>
+                <div class="card-body">
+                    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <label for="login">Login</label>
+                            <input type="text" formControlName="login" class="form-control" required>
+                            <div *ngIf="submitted && f.login.errors" class="invalid-feedback">
+                                <div *ngIf="f.login.errors.required">Pole login jest wymagane</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="login">Hasło</label>
+                            <input type="password" formControlName="password" class="form-control" required>
+                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                <p *ngIf="f.password.errors.required">Pole hasło jest wymagane</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">
+                                <span class="spinner-border spinner-border-sm mr-1"></span>
+                                Zaloguj
+                            </button>
+                        </div>
+                    </form>
+                    <p>
+                        <span>Nie masz konta?<a href="" class="redirect" routerLink="/register"> Zarejestruj się</a></span>
+                    </p>
+                    <p>
+                        <span>Zapomniałeś hasła?<a href="" class="redirect" routerLink="/forgot-password"> Przypomnij hasło</a></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- <div class="displayTable">
+    <div class="displayTableCell">
+
+        <div class="authBlock">
+            <h3>Logowanie do panelu prezentera</h3>
+            <div class="formGroup">
+                <input type="text" class="formControl" placeholder="Username" #userName required>
+            </div>
+
+            <div class="formGroup">
+                <input type="password" class="formControl" placeholder="Password" #userPassword required>
+            </div>
+
+            <div class="formGroup">
+                <input type="button" class="btn btnPrimary" value="Log in"
+                    (click)="auth.login(userName.value, userPassword.value)">
+            </div>
+
+            <div class="forgotPassword">
+                <span routerLink="/forgot-password">Zapomniałeś hasła?</span>
+            </div>
+        </div>
+
+        <div class="redirectToLogin">
+            <span>Nie masz konta?<span class="redirect" routerLink="/register"> Zarejestruj się</span></span>
+        </div>
+
+    </div>
+</div> -->

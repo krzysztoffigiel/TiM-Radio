@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import * as firebase from 'firebase';
 import 'firebase/firestore';
 
 const headerDict = {

@@ -9,6 +9,7 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { environment } from 'src/environments/environment';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { NgMarqueeModule } from 'ng-marquee';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
@@ -18,6 +19,13 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CallbackComponent } from './callback/callback.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { GreetingsListComponent } from './admin/greetings-list/greetings-list.component';
+import { AdminRegisterComponent } from './admin/admin-register/admin-register.component';
+import { AdminForgotPasswordComponent } from './admin/admin-forgot-password/admin-forgot-password.component';
+import { AdminVerifyEmailComponent } from './admin/admin-verify-email/admin-verify-email.component';
+import { AuthService } from './auth/auth.service';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +34,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
     DashboardComponent,
     AdminDashboardComponent,
     CallbackComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    GreetingsListComponent,
+    AdminRegisterComponent,
+    AdminForgotPasswordComponent,
+    AdminVerifyEmailComponent
   ],
   imports: [
     BrowserModule,
@@ -35,11 +47,14 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule,
+    NgMarqueeModule
   ],
   providers: [
     Title,
-    AngularFirestore
+    AngularFirestore,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

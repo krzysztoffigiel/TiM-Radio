@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row text-center">
+        <div class="col col-12" style="margin-top: 120px;">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nazwa słuchacza</th>
+                        <th scope="col">Tekst</th>
+                        <th scope="col">Data dodania</th>
+                        <th scope="col">Czynność</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let greeting of greetingsModel; let i = index;">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{greeting?.name}}</td>
+                        <td>{{greeting?.text}}</td>
+                        <td>{{parseDate(greeting?.date)}}</td>
+                        <!-- <td><button class="btn btn-danger" (click)="greetingsService.deleteGreeting(greeting)">Usuń</button></td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

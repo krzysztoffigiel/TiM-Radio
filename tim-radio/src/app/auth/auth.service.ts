@@ -1,101 +1,108 @@
-import { User } from './../user.model';
-import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { Injectable, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
-import * as auth0 from 'auth0-js';
+import { auth } from 'firebase/app';
+import { AngularFireAuth } from "@angular/fire/auth";
+import { User } from "../shared/services/user";
 
 import { environment } from '../../environments/environment';
-import { BehaviorSubject, Observable } from 'rxjs';
-
-(window as any).global = window;
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
 
-  auth0 = new auth0.WebAuth({
-    clientID: environment.auth.clientID,
-    domain: environment.auth.domain,
-    responseType: 'token',
-    redirectUri: environment.auth.auth0RedirectUri,
-    audience: environment.auth.audience,
-    scope: 'openid profile'
-  });
+  user: User;
+  userData: any; // Save logged in user data
 
-  expiresAt: number;
-  userProfile: any;
-  accessToken: string;
-  authenticated: boolean;
-  isUser: boolean;
-  isEmployer: boolean;
-
-  private userInfo: BehaviorSubject<User>;
-
-  constructor(public router: Router) {
-    this.userInfo = new BehaviorSubject<User>(null);
-  }
-
-  public login() {
-    this.auth0.authorize();
-  }
-
-  public handleLoginCallback(): void {
-    this.auth0.parseHash((err, authResult) => {
-      if (authResult && authResult.accessToken) {
-        window.location.hash = '';
-        this.getUserInfo(authResult);
-      } else if (err) {
-        console.log(`Error: ${err.error}`);
-      }
-      this.router.navigate(['/']); // Redirect the user after the session is set up.
-    });
-  }
-
-  getAccessToken() {
-    this.auth0.checkSession({}, (err, authResult) => {
-      if (authResult && authResult.accessToken) {
-        this.getUserInfo(authResult);
+  constructor(public afAuth: AngularFireAuth, public router: Router, public afs: AngularFirestore, public ngZone: NgZone) {
+    
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        this.user = user;
+        localStorage.setItem('user', JSON.stringify(this.user));
+        JSON.parse(localStorage.getItem('user'));
+      } else {
+        localStorage.setItem('user', null);
+        JSON.parse(localStorage.getItem('user'));
       }
     });
+    
   }
 
-  getUserInfo(authResult) {
-    this.auth0.client.userInfo(authResult.accessToken, (err, profile) => {
-      if (profile) {
-        this.setSession(authResult, profile);
-        console.log('User info: ', profile)
-        // this.userInfo = profile;
-        this.userInfo.next(profile);
-      } else if (err) {
-        console.error('An error occred during user info getting: ', err); 
-      }
+  login(email: string, password: string) {
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password).then((result) => {
+      this.ngZone.run(() => {
+        this.router.navigate(['admin-panel']);
+      });
+      this.SetUserData(result.user);
+    }).catch((err) => {
+      window.alert(err.message);
     });
   }
 
-  getUserValue(): Observable<User> {
-    return this.userInfo.asObservable();
+  register(email: string, password: string) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password).then((result) => {
+      this.sendEmailVerification();
+      this.SetUserData(result.user);
+    }).catch((err) => {
+      window.alert(err.message); 
+    })
   }
 
-  private setSession(authResult, profile): void {
-    this.expiresAt = authResult.expiresIn * 1000 + Date.now();
-    this.accessToken = authResult.accessToken;
-    this.userProfile = profile;
-    this.authenticated = true;
-  }
-
-  // Log out of Auth0 session
-  // Ensure that returnTo URL is specified in Auth0
-  // Application settings for Allowed Logout URLs
-  public logout(): void {
-    this.auth0.logout({
-      returnTo: environment.auth.auth0ReturnTo,
-      clientID: environment.auth.clientID
+  sendEmailVerification() {
+    return this.afAuth.auth.currentUser.sendEmailVerification().then(() => {
+      this.router.navigate(['verify-email']);
     });
   }
 
-  // Checks whether the expiry time for the user's Access Token has passed and that user is signed in locally.
+  sendPasswordResetEmail(passwordResetEmail: string) {
+    return this.afAuth.auth.sendPasswordResetEmail(passwordResetEmail).then(() => {
+      window.alert('Hasło zostało zresetowane. Wysłaliśmy wiadomość na Twój adres e-mail.')
+    }).catch((err) => {
+      window.alert(err);
+    });
+  }
+
+  logout() {
+    return this.afAuth.auth.signOut().then(() => {
+      localStorage.removeItem('user');
+      this.router.navigate(['']);
+    })
+  }
+
   get isLoggedIn(): boolean {
-    return Date.now() < this.expiresAt && this.authenticated;
+    const user = JSON.parse(localStorage.getItem('user'));
+    return (user !== null && user.emailVerified !== false) ? true : false;
   }
+
+  AuthLogin(provider) {
+    return this.afAuth.auth.signInWithPopup(provider)
+    .then((result) => {
+       this.ngZone.run(() => {
+          this.router.navigate(['dashboard']);
+        })
+      this.SetUserData(result.user);
+    }).catch((error) => {
+      window.alert(error)
+    })
+  }
+
+  SetUserData(user) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
+    const userData: User = {
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      emailVerified: user.emailVerified
+    }
+    return userRef.set(userData, {
+      merge: true
+    })
+  }
+
+
 
 }

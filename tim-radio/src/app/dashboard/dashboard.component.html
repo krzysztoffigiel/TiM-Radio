@@ -1,6 +1,7 @@
 <nav id="tim-navbar" class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
   <div class="container">
-    <a (click)="scrollToElement('hero')" class="navbar-brand" href=#><img src="./assets/img/timradio-logo.png" alt="tim radio logo"></a>
+    <a (click)="scrollToElement('hero')" class="navbar-brand" href=#><img src="./assets/img/timradio-logo.png"
+        alt="tim radio logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
       aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -13,11 +14,12 @@
             Słuchaj nas
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="http://s3.slotex.pl:7708/listen.pls?sid=1">Winamp</a>
-            <a class="dropdown-item" href="http://s3.slotex.pl:7708/listen.m3u?sid=1">M3U</a>
-            <a class="dropdown-item" href="http://s3.slotex.pl:7708/listen.asx?sid=1">Windows Media Player</a>
-            <a class="dropdown-item" href="http://s3.slotex.pl:7708/listen.xspf?sid=1">VLC Media Player</a>
-            <a class="dropdown-item" href="http://s3.slotex.pl:7708/listen.xtl?sid=1">QuickTime Player</a>
+            <a class="dropdown-item" href="https://s3.slotex.pl/shoutcast/7708/listen.pls?sid=1">Winamp</a>
+            <a class="dropdown-item" href="https://s3.slotex.pl/shoutcast/7708/listen.m3u?sid=1">M3U</a>
+            <a class="dropdown-item" href="https://s3.slotex.pl/shoutcast/7708/listen.asx?sid=1">Windows Media
+              Player</a>
+            <a class="dropdown-item" href="https://s3.slotex.pl/shoutcast/7708/listen.xspf?sid=1">VLC Media Player</a>
+            <a class="dropdown-item" href="https://s3.slotex.pl/shoutcast/7708/listen.xtl?sid=1">QuickTime Player</a>
           </div>
         </li>
         <li class="nav-item">
@@ -26,11 +28,34 @@
         <li class="nav-item">
           <a class="nav-link" (click)="scrollToElement('whats-played')" href="#whats-played">Ramówka</a>
         </li>
-        <li *ngIf="auth.isLoggedIn" class="nav-item">
-          <a class="nav-link"  (click)="navigateTo(['admin-panel'])">Admin</a>
+        <li>
+          <!-- start gg-chat-html - Copyright Fintecom Sp. z o.o. -->
+
+          <a href="//widget.gg.pl/widget/ff043077b77dc974579eb3ab17cb401e561ecfe154688f56b61e46b7ce78ddb0#uin%3D73087359%7Cmsg_online%3DWitam%2C%20w%20czym%20mog%C4%99%20pom%C3%B3c%7Cmsg_offline%3DZostaw%20wiadomo%C5%9B%C4%87%20i%20informacje%20kontaktowe%2C%20a%20odpowiemy%20na%20Twoje%20pytanie.%7Chash%3Dff043077b77dc974579eb3ab17cb401e561ecfe154688f56b61e46b7ce78ddb0"
+            style="display:inline-block;max-width: 251px; height: 40px; box-sizing: border-box; overflow: hidden; font-size: 14px; font-family: Arial, sans-serif; font-weight: normal; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: antialiased; font-smoothing: antialiased; -webkit-border-radius: 21px; -moz-border-radius: 21px; border-radius: 21px; box-shadow: 0 1pt 12pt rgba(0,0,0,.3); -webkit-box-shadow: 0 1pt 12pt rgba(0,0,0,.3); -moz-box-shadow: 0 1pt 12pt rgba(0,0,0,.3); user-select: none;"
+            rel="nofollow" data-gg-widget="snapped-bottom" target="_blank">
+            <span
+              style="float: right;max-width: 231px; height: 40px; padding: 0 15px 0 28px; margin-left: -20px; box-sizing: border-box; line-height: 40px; background-color: #1892fb; border-radius: 0 20px 20px 0; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Zadaj
+              pytanie on-line</span>
+            <span
+              style="display: flex; justify-content: center; align-items: center; float: left; width: 40px; height: 40px; box-sizing: border-box; background-color: #fff; border-radius: 50%"><img
+                alt="" style="display: block; width: 24px; height: 24px;"
+                src="https://status.gadu-gadu.pl/users/status.asp?id=73087359&amp;styl=4&amp;source=widget"></span>
+          </a><!-- Chcesz mieć GG Chat na swojej stronie? Sprawdź https://www.ggchat.com/ -->
+          <!-- end gg-chat-html -->
+
+          <!-- start gg-chat-javascript - kod javascript możesz umieścić przed końcowym znacznikiem body - Copyright Fintecom Sp. z o.o. -->
+          <script type="text/javascript">
+            (function () {
+              var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.id = 'gg-widget-script';
+              s.src = '//widget.gg.pl/resources/js/widget.js';
+              var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);
+            })();
+          </script>
+          <!-- end gg-chat-javascript -->
         </li>
-        <li *ngIf="auth.isLoggedIn" class="nav-item">
-          <a class="nav-link" (click)="auth.logout()" href="">Wyloguj</a>
+        <li class="nav-item">
+          <a class="nav-link" (click)="navigateTo(['login'])">Panel prezentera</a>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link" href="#order-a-song">Zamów kawałek</a>
@@ -47,9 +72,28 @@
         <h1 class="hello-text font-weight-light">#zostańwdomu i słuchaj nas online</h1>
         <p>Zajrzyj na aktualną ramówkę</p>
         <p><img src="http://status.gadu-gadu.pl/users/status.asp?id=70708763&styl=0"> 70708763</p>
-        <p><fa-icon [icon]="faEnvelope"></fa-icon>&nbsp;<a href = "mailto: timradio@op.pl">timradio@op.pl</a></p>
+        <p>
+          <fa-icon [icon]="faEnvelope"></fa-icon>&nbsp;<a href="mailto: timradio@op.pl">timradio@op.pl</a>
+        </p>
         <audio controls duration="true" preload="none">
-          <source src="http://s3.slotex.pl:7708/stream/1/;?type=http"></audio>
+          <source src="https://s3.slotex.pl/shoutcast/7708/stream?sid=1">
+        </audio>
+        <ng-marquee duration="60s" [stopOnHover]="true">
+          <mark style="background-color: transparent; color: white;">
+            <span *ngFor="let greeting of greetingsList">
+              <span *ngIf="greeting?.active">
+                <b style="color: red;">{{greeting?.name}}</b>: <i>{{greeting?.text}} &nbsp; &nbsp; </i>
+              </span>
+            </span>
+          </mark>
+        </ng-marquee>
+        <!-- <marquee behavior="scroll" direction="left">
+          <span *ngFor="let greeting of greetingsList; let isLast=last">
+            <span *ngIf="greeting?.active">
+              <b style="color: red;">{{greeting?.name}}</b>: <i>{{greeting?.text}} &nbsp; &nbsp; </i>
+            </span>
+          </span>
+        </marquee> -->
       </div>
     </div>
   </div>
@@ -61,7 +105,8 @@
       <div class="d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
         <div class="pt-5 pb-5">
           <h1 class="display-4 font-weight-light text-white">Nasz skład</h1>
-          <p class="text-white our-djs-description">Zespół TiM Radio to ludzie z wieloletnim doświadczeniem w branży muzycznej. 
+          <p class="text-white our-djs-description">Zespół TiM Radio to ludzie z wieloletnim doświadczeniem w branży
+            muzycznej.
             Tworzą go osoby z pasją do muzyki, dzieląc się nią z słuchaczami każdego dnia. </p>
         </div>
       </div>
@@ -69,24 +114,99 @@
     <div class="col-md-6 p-0 bg-danger h-md-100">
       <div class="d-md-flex our-djs-right align-items-center h-100 p-5 text-center justify-content-center">
         <div class="pt-5 pb-5">
-          <div class="card mb-3" >
-            <div class="row no-gutters">
-              <div class="col-md-4">
-                <img src="./assets/img/waldmix-foto.jpeg" class="card-img" alt="Waldmix DJ TiM Radio">
+          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="card mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-md-4">
+                      <img src="./assets/img/waldmix-foto.jpeg" class="card-img" alt="Waldmix DJ TiM Radio">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h3 class="card-title">Waldek (Waldmix)</h3>
+                        <div class="divider"></div>
+                        <p class="card-text italic">"Założyciel Radia TiM. Miłośnik włoskiej muzyki i chińskiego
+                          jedzenia.
+                          Namiętny
+                          słuchacz disco, wielbiciel zwierząt, w szczególności jego psa - Bandziora.
+                          W radiach gościnnie od prawie trzech lat. DJ od ponad trzydziestu wiosen. Zamiłowanie do
+                          grania w
+                          radiu
+                          zawdzięcza DJ'owi Krisowi z Radia80 oraz DJ'owi Marchewie"</p>
+                        <p class="card-text"><small class="text-muted">02.04.2020</small></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h3 class="card-title">Waldek Waldmix</h3>
-                  <div class="divider"></div>
-                  <p class="card-text italic">"Założyciel Radia TiM. Miłośnik włoskiej muzyki i chińskiego jedzenia. Namiętny
-                    słuchacz disco, wielbiciel zwierząt, w szczególności jego psa - Bandziora.
-                    W radiach gościnnie od prawie trzech lat. DJ od ponad trzydziestu wiosen. Zamiłowanie do grania w radiu
-                    zawdzięcza DJ'owi Krisowi z Radia80 oraz DJ'owi Marchewie"</p>
-                  <p class="card-text"><small class="text-muted">02.04.2020</small></p>
+              <div class="carousel-item">
+                <div class="card mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-md-4">
+                      <img src="./assets/img/szafira.jpeg" class="card-img" alt="Waldmix DJ TiM Radio">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h3 class="card-title">Aleksandra (Szafira)</h3>
+                        <div class="divider"></div>
+                        <p class="card-text italic">"Szafira lubi pisanie i muzykę oraz pisać o muzyce. Chociaż jej
+                          serce należy do lat 60, to chętnie słucha muzyki ze wszystkich dekad. Ulubione gatunki Szafiry
+                          to POP i ROCK we wsystkich odmianach. "</p>
+                        <p class="card-text"><small class="text-muted">02.04.2020</small></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="card mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-md-4">
+                      <img src="./assets/img/piter.jpeg" class="card-img" alt="Waldmix DJ TiM Radio">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h3 class="card-title">Piter Tm</h3>
+                        <div class="divider"></div>
+                        <p class="card-text italic">"Nasz nowy prezenter. Kolejny wariat na punkcie Italo Disco. Smakosz
+                          golonek i miłośnik żużlu."</p>
+                        <p class="card-text"><small class="text-muted">02.08.2020</small></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="card mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-md-4">
+                      <img src="./assets/img/dj-olej.jpeg" class="card-img" alt="Waldmix DJ TiM Radio">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h3 class="card-title">DJ Olej</h3>
+                        <div class="divider"></div>
+                        <p class="card-text italic">"DJ Olej, toleruje przede wszystkim muzykę space, ale pozostałe
+                          gatunki również nie są mu obce. Wiarę w TiMradio niesie wszedzie, gdziekolwiek pojawi się na
+                          motorze.."</p>
+                        <p class="card-text"><small class="text-muted">02.08.2020</small></p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" style="background-color: black;" aria-hidden="true"></span>
+              <span class="sr-only">Poprzedni</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" style="background-color: black;" aria-hidden="true"></span>
+              <span class="sr-only">Następny</span>
+            </a>
           </div>
+
         </div>
       </div>
     </div>
@@ -96,16 +216,19 @@
 <section id="whats-played" class="py-5">
   <div class="container text-center">
     <h1>Ramówka</h1>
+
+
     <div *ngFor="let program of radioProgramModel" class="accordion" id="accordionExample">
-      <div  class="card bg-dark text-white">
+      <div class="card bg-dark text-white">
         <div class="card-header" id="headingOne">
           <h2 class="mb-0">
-            <button class="btn btn-link collapsed text-white" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <button class="btn btn-link collapsed text-white" type="button" data-toggle="collapse"
+              data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
               Poniedziałek
             </button>
           </h2>
         </div>
-    
+
         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
           <div class="card-body">
             {{program.monday}}
@@ -115,7 +238,8 @@
       <div class="card card bg-dark text-white">
         <div class="card-header" id="headingTwo">
           <h2 class="mb-0">
-            <button class="btn btn-link collapsed text-white" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <button class="btn btn-link collapsed text-white" type="button" data-toggle="collapse"
+              data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
               Wtorek
             </button>
           </h2>
@@ -129,7 +253,8 @@
       <div class="card card bg-dark text-white">
         <div class="card-header" id="headingThree">
           <h2 class="mb-0">
-            <button class="btn btn-link collapsed text-white" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            <button class="btn btn-link collapsed text-white" type="button" data-toggle="collapse"
+              data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
               Środa
             </button>
           </h2>
@@ -143,7 +268,8 @@
       <div class="card card bg-dark text-white">
         <div class="card-header" id="headingThree">
           <h2 class="mb-0">
-            <button class="btn btn-link collapsed text-white" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+            <button class="btn btn-link collapsed text-white" type="button" data-toggle="collapse"
+              data-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
               Czwartek
             </button>
           </h2>
@@ -157,7 +283,8 @@
       <div class="card card bg-dark text-white">
         <div class="card-header" id="headingThree">
           <h2 class="mb-0">
-            <button class="btn btn-link collapsed text-white" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseThree">
+            <button class="btn btn-link collapsed text-white" type="button" data-toggle="collapse"
+              data-target="#collapseFive" aria-expanded="false" aria-controls="collapseThree">
               Piątek
             </button>
           </h2>
@@ -171,7 +298,8 @@
       <div class="card card bg-dark text-white">
         <div class="card-header" id="headingThree">
           <h2 class="mb-0">
-            <button class="btn btn-link collapsed text-white" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseThree">
+            <button class="btn btn-link collapsed text-white" type="button" data-toggle="collapse"
+              data-target="#collapseSix" aria-expanded="false" aria-controls="collapseThree">
               Sobota
             </button>
           </h2>
@@ -185,7 +313,8 @@
       <div class="card card bg-dark text-white">
         <div class="card-header" id="headingThree">
           <h2 class="mb-0">
-            <button class="btn btn-link collapsed text-white" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseThree">
+            <button class="btn btn-link collapsed text-white" type="button" data-toggle="collapse"
+              data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseThree">
               Niedziela
             </button>
           </h2>
@@ -198,5 +327,40 @@
       </div>
     </div>
   </div>
-  
+
 </section>
+
+<section id="whats-played" class="py-5 bg-secondary">
+  <div class="container text-center">
+    <h1 class="text-white">Panel pozdrowień</h1>
+    <p class="text-light">Zamów pozdrowienia lub zamów kawałek</p>
+    <div class="row text-left">
+      <div class="col col-12">
+        <form [formGroup]="greetingsForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label class="text-white">Imię/Nick:</label>
+            <input type="text" formControlName="name" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+              <div *ngIf="f.name.errors.required">Pole Imię/Nick jest wymagane!</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="text-white">Tekst pozdrowień:</label>
+            <textarea type="text" formControlName="text" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.text.errors }">
+            </textarea>
+            <div *ngIf="submitted && f.text.errors" class="invalid-feedback">
+              <div *ngIf="f.text.errors.required">Pole tekst pozdrowień jest wymagane!</div>
+            </div>
+          </div>
+          <div class="form-group text-right">
+            <button [disabled]="!greetingsForm.valid" class="btn btn-primary">WYŚLIJ</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<router-outlet></router-outlet>
