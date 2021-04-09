@@ -23,7 +23,7 @@ export class GreetingsService {
   }
 
   deleteGreeting(greeting) {
-    return this.firestore.collection('greetings').doc(greeting.payload.doc.id).delete();
+    return this.firestore.collection('greetings').doc(greeting.id).delete();
   }
 
   updateGreetingStatus(greeting) {

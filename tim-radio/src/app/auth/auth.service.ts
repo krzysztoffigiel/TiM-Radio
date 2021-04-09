@@ -19,21 +19,25 @@ export class AuthService {
   constructor(public afAuth: AngularFireAuth, public router: Router, public afs: AngularFirestore, public ngZone: NgZone) {
     
     this.afAuth.authState.subscribe(user => {
+      console.log('User from authState: ', user)
       if (user) {
-        this.user = user;
-        localStorage.setItem('user', JSON.stringify(this.user));
+        console.log('Jest user')
+        this.userData = user;
+        localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user'));
       } else {
+        console.log('Nie ma usera')
         localStorage.setItem('user', null);
         JSON.parse(localStorage.getItem('user'));
       }
     });
-    
+
   }
 
   login(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password).then((result) => {
       this.ngZone.run(() => {
+        console.log('Wszedlem w ngZone: ', result)
         this.router.navigate(['admin-panel']);
       });
       this.SetUserData(result.user);
@@ -45,7 +49,7 @@ export class AuthService {
   register(email: string, password: string) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password).then((result) => {
       this.sendEmailVerification();
-      this.SetUserData(result.user);
+      // this.SetUserData(result.user);
     }).catch((err) => {
       window.alert(err.message); 
     })
@@ -73,20 +77,9 @@ export class AuthService {
   }
 
   get isLoggedIn(): boolean {
+    console.log('IsloggedIn user: ', localStorage.getItem('user'))
     const user = JSON.parse(localStorage.getItem('user'));
-    return (user !== null && user.emailVerified !== false) ? true : false;
-  }
-
-  AuthLogin(provider) {
-    return this.afAuth.auth.signInWithPopup(provider)
-    .then((result) => {
-       this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
-        })
-      this.SetUserData(result.user);
-    }).catch((error) => {
-      window.alert(error)
-    })
+    return (user !== null) ? true : false;
   }
 
   SetUserData(user) {

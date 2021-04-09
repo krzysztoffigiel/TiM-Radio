@@ -8,9 +8,6 @@
         <p>Administrator ({{userInfo?.email}})</p>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="nav navbar-nav ml-auto nav nav-pills">
-                <li class="nav-item admin-nav">
-                    <a class="nav-link" routerLink="greetings-list" routerLinkActive="active">Pozdrowienia</a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" (click)="auth.logout()">Wyloguj</a>
                 </li>
@@ -20,9 +17,10 @@
 </nav>
 
 <div class="container">
-    <div class="row">
+    <div class="row h-100">
         <div class="col col-12">
-            <table style="margin-top: 100px;" class="table">
+            <p style="background-color: lightgreen; margin-top: 100px; width: 20vw; text-align: center;">Dodane w ciągu ostatnich 5h</p>
+            <table class="table">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
@@ -30,6 +28,7 @@
                     <th scope="col">Treść</th>
                     <th scope="col">Data</th>
                     <th scope="col">Aktywny</th>
+                    <th scope="col">Czynność</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -38,7 +37,12 @@
                     <td>{{greeting?.name}}</td>
                     <td><i>{{greeting?.text}}</i></td>
                     <td>{{parseDate(greeting?.date?.seconds)}} (<span style="font-weight: bold;">{{parseDateFromNow(greeting?.date?.seconds)}}</span>)</td>
-                    <td (click)="changeGreetingStatus(greeting)">{{greeting?.active}}</td>
+                    <td style="font-weight: bold;">
+                        <button (click)="changeGreetingStatus(greeting)" [ngStyle]="{'color': greeting?.active ? 'darkgreen' : 'red'}" class="btn btn-light">{{greeting?.active}}</button>
+                    </td>
+                    <td>
+                        <button (click)="deleteGreeting(greeting)" class="btn btn-danger">Usuń</button>
+                    </td>
                   </tr>
                 </tbody>
               </table>

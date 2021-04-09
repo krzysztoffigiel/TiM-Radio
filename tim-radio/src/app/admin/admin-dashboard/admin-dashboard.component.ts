@@ -42,6 +42,14 @@ export class AdminDashboardComponent implements OnInit {
     this.greetingsService.updateGreetingStatus(greeting);
   }
 
+  deleteGreeting(greeting) {
+    this.greetingsService.deleteGreeting(greeting).then(result => {
+      console.log('Delete greeting result: ', result);
+    }).catch(err => {
+      console.error('Delete greeting error: ', err);
+    });
+  }
+
   sortGreetingsByDate(greetingsArray) {
     return greetingsArray.sort((a, b) => {
       return b?.date?.seconds - a?.date?.seconds;
@@ -52,7 +60,7 @@ export class AdminDashboardComponent implements OnInit {
     var currentDate = moment();
     var diff = currentDate.diff(moment.unix(date), 'h')
 
-    if(diff <= 24) return true;
+    if(diff <= 5) return true;
     else return false;
   }
 
