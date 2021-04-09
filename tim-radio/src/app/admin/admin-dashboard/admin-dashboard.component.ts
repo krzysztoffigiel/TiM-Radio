@@ -6,6 +6,8 @@ import { User } from "../../shared/services/user";
 import { GreetingsService } from 'src/app/greetings.service';
 import { Greetings } from 'src/app/models/greetings.model';
 import * as moment from 'moment';
+import {NgbModal, ModalDismissReasons, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
+import { GreetingDeleteModalComponent } from '../greeting-delete-modal/greeting-delete-modal.component';
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
@@ -15,8 +17,16 @@ export class AdminDashboardComponent implements OnInit {
 
   userInfo: User;
   greetingsList: Array<Greetings> = [];
+  title = 'Uwaga!';
+  closeResult: string;
+  modalOptions:NgbModalOptions;
 
-  constructor(public auth: AuthService, private router: Router, public greetingsService: GreetingsService) { }
+  constructor(public auth: AuthService, private router: Router, public greetingsService: GreetingsService, private modalService: NgbModal) {
+    this.modalOptions = {
+      backdrop:'static',
+      backdropClass:'customBackdrop'
+    }
+  }
 
   ngOnInit(): void {
     this.getUserInfo();
@@ -78,6 +88,10 @@ export class AdminDashboardComponent implements OnInit {
 
   navigateTo(url: any) {
     this.router.navigate(url);
+  }
+
+  openGreetingDeleteConfirmationModal() {
+    this.modalService.open(GreetingDeleteModalComponent);
   }
 
 }

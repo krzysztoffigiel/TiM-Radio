@@ -25,6 +25,7 @@ import { AdminRegisterComponent } from './admin/admin-register/admin-register.co
 import { AdminForgotPasswordComponent } from './admin/admin-forgot-password/admin-forgot-password.component';
 import { AdminVerifyEmailComponent } from './admin/admin-verify-email/admin-verify-email.component';
 import { AuthService } from './auth/auth.service';
+import { GreetingDeleteModalComponent } from './admin/greeting-delete-modal/greeting-delete-modal.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { AuthService } from './auth/auth.service';
     GreetingsListComponent,
     AdminRegisterComponent,
     AdminForgotPasswordComponent,
-    AdminVerifyEmailComponent
+    AdminVerifyEmailComponent,
+    GreetingDeleteModalComponent
   ],
   imports: [
     BrowserModule,
