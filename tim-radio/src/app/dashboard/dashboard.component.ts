@@ -63,11 +63,13 @@ export class DashboardComponent implements OnInit {
 
   getGreetings() {
     this.greetingsService.getGreetings().subscribe((data: any) => {
-      this.greetingsList = data.map(e => {
+      this.greetingsList = (data.map(e => {
         return {
           id: e.payload.doc.id,
           ...e.payload.doc.data()
         } as Greetings
+      })).sort((a, b) => {
+        return b?.date?.seconds - a?.date?.seconds;
       })
       console.log(this.greetingsList)
     })

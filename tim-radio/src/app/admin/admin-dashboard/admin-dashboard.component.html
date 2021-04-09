@@ -19,6 +19,33 @@
     </div>
 </nav>
 
+<div class="container">
+    <div class="row">
+        <div class="col col-12">
+            <table style="margin-top: 100px;" class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Autor</th>
+                    <th scope="col">Treść</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Aktywny</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let greeting of greetingsList; let i = index" [ngStyle]="{'background-color': checkLastGreetings(greeting?.date?.seconds) ? 'lightgreen' : 'none'}" >
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{greeting?.name}}</td>
+                    <td><i>{{greeting?.text}}</i></td>
+                    <td>{{parseDate(greeting?.date?.seconds)}} (<span style="font-weight: bold;">{{parseDateFromNow(greeting?.date?.seconds)}}</span>)</td>
+                    <td (click)="changeGreetingStatus(greeting)">{{greeting?.active}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+
 <!-- <router-outlet></router-outlet> -->
         
 

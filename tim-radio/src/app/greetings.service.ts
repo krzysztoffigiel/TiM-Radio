@@ -26,4 +26,8 @@ export class GreetingsService {
     return this.firestore.collection('greetings').doc(greeting.payload.doc.id).delete();
   }
 
+  updateGreetingStatus(greeting) {
+    return this.firestore.collection('greetings').doc(greeting.id).update({ active: !greeting?.active });
+  }
+
 }
