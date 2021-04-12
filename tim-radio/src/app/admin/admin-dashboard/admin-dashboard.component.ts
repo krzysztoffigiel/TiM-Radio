@@ -56,18 +56,24 @@ export class AdminDashboardComponent implements OnInit {
     this.greetingsService.updateGreetingStatus(greeting);
   }
 
-  deleteGreeting(greeting) {
-    this.greetingsService.deleteGreeting(greeting).then(result => {
-      console.log('Delete greeting result: ', result);
-    }).catch(err => {
-      console.error('Delete greeting error: ', err);
-    });
+  deleteGreeting(greeting, modalContent?) {
+    this.modalService.open(modalContent, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      console.log('Greeting delete confirmation modal accept: ', result);
+      this.greetingsService.deleteGreeting(greeting).then(result => {
+        console.log('Delete greeting result: ', result);
+      }).catch(err => {
+        console.error('Delete greeting error: ', err);
+      });
+    }, (reason) => {
+      console.log('Greeting delete confirmation modal dismissed: ', reason);
+    })
+    
   }
 
   sortGreetingsByDate(greetingsArray) {
     return greetingsArray.sort((a, b) => {
       return b?.date?.seconds - a?.date?.seconds;
-    })
+    });
   }
 
   checkLastGreetings(date) {
@@ -97,5 +103,7 @@ export class AdminDashboardComponent implements OnInit {
   openGreetingDeleteConfirmationModal() {
     this.modalService.open(GreetingDeleteModalComponent);
   }
+
+  
 
 }

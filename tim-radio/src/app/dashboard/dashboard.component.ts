@@ -15,7 +15,7 @@ import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angula
 
 import * as moment from 'moment';
 import * as firebase from 'firebase';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-dashboard',
