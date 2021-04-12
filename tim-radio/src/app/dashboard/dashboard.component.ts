@@ -15,6 +15,7 @@ import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angula
 
 import * as moment from 'moment';
 import * as firebase from 'firebase';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-dashboard',
@@ -35,7 +36,8 @@ export class DashboardComponent implements OnInit {
   greetingRef: AngularFireObject<any>;
 
   constructor(private radioProgram: RadioProgramService, public auth: AuthService, private router: Router,
-    private formBuilder: FormBuilder, public greetingsService: GreetingsService, private greetingService: GreetingsService) { }
+    private formBuilder: FormBuilder, public greetingsService: GreetingsService, private greetingService: GreetingsService,
+    private modalService: NgbModal) { }
 
   ngOnInit(): void {
 
@@ -90,7 +92,7 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(url);
   }
 
-  onSubmit() {
+  onSubmit(content?) {
     this.submitted = true;
 
     if (this.greetingsForm.invalid) {
@@ -107,9 +109,19 @@ export class DashboardComponent implements OnInit {
 
       this.greetingsForm.reset();
 
-      alert('Dziękujemy za wysłanie pozdrowień!'); // ToDo: mdb alert 
+      // alert('Dziękujemy za wysłanie pozdrowień!'); // ToDo: mdb alert 
+
+      this.openGreetingModal(content);
     }
 
+  }
+
+  openGreetingModal(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      console.log('Modal close result: ', result);
+    }, (reason) => {
+      console.log('Modal dissmised by reason: ', reason);
+    });
   }
 
   get f() { return this.greetingsForm.controls; }
