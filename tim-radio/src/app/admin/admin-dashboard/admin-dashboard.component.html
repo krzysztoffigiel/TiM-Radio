@@ -9,7 +9,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="nav navbar-nav ml-auto nav nav-pills">
                 <li class="nav-item">
-                    <a class="nav-link" (click)="auth.logout()">Wyloguj</a>
+                    <a class="nav-link" (click)="auth.logout()" ngbTooltip="Kliknij, aby wylogować">Wyloguj</a>
                 </li>
             </ul>
         </div>
@@ -43,10 +43,10 @@
                         <td style="font-weight: bold;">
                             <button (click)="changeGreetingStatus(greeting)"
                                 [ngStyle]="{'color': greeting?.active ? 'darkgreen' : 'red'}"
-                                class="btn btn-light">{{greeting?.active}}</button>
+                                class="btn btn-light" ngbTooltip="Kliknij, aby zmienić widoczność pozdrowienia">{{greeting?.active}} </button>
                         </td>
                         <td>
-                            <button (click)="deleteGreeting(greeting)" class="btn btn-danger">Usuń</button>
+                            <button (click)="deleteGreeting(greeting)" class="btn btn-danger" ngbTooltip="Kliknij, aby usunąć pozdrowienie">Usuń</button>
                         </td>
                     </tr>
                 </tbody>

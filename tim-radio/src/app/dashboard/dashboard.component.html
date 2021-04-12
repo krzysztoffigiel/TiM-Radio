@@ -299,7 +299,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="text-white">Tekst pozdrowień:</label>
+            <label class="text-white">Tekst pozdrowień (min. 10 znaków):</label>
             <textarea type="text" formControlName="text" class="form-control"
               [ngClass]="{ 'is-invalid': submitted && f.text.errors }">
             </textarea>
@@ -308,7 +308,7 @@
             </div>
           </div>
           <div class="form-group text-right">
-            <button [disabled]="!greetingsForm.valid" class="btn btn-primary">WYŚLIJ</button>
+            <button [disabled]="!greetingsForm.valid" class="btn btn-primary" ngbTooltip="Kliknij, aby wysłać pozdrowienie">WYŚLIJ</button>
           </div>
         </form>
       </div>
