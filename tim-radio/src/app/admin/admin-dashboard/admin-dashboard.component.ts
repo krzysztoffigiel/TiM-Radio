@@ -20,6 +20,9 @@ export class AdminDashboardComponent implements OnInit {
   title = 'Uwaga!';
   closeResult: string;
   modalOptions:NgbModalOptions;
+  page: number = 1;
+  pageSize: number = 10;
+
 
   constructor(public auth: AuthService, private router: Router, public greetingsService: GreetingsService, private modalService: NgbModal) {
     this.modalOptions = {
