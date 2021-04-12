@@ -20,6 +20,7 @@ export class AdminDashboardComponent implements OnInit {
   title = 'Uwaga!';
   closeResult: string;
   modalOptions:NgbModalOptions;
+  // ngb pagination
   page: number = 1;
   pageSize: number = 10;
 
@@ -46,7 +47,7 @@ export class AdminDashboardComponent implements OnInit {
         } as Greetings
       })).sort((a, b) => {
         return b?.date?.seconds - a?.date?.seconds;
-      })
+      });
       console.log('Greetings from admin dashboard: ', this.greetingsList)
     })
   }
