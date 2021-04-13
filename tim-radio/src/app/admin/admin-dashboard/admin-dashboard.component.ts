@@ -159,9 +159,14 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
 
-  changeContentVisibility() {
-    this.isGreetingsVisible = !this.isGreetingsVisible;
-    this.isUploadFileVisible = !this.isUploadFileVisible;
+  changeGreetingsVisibility() {
+    this.isGreetingsVisible = true;
+    this.isUploadFileVisible = false;
+  }
+
+  changeUploadFileVisibility() {
+    this.isGreetingsVisible = false;
+    this.isUploadFileVisible = true;
   }
 
 
