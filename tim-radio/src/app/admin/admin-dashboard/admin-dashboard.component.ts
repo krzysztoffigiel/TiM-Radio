@@ -1,3 +1,4 @@
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 // import { User } from './../../user.model';
 import { Component, OnInit } from '@angular/core';
@@ -6,8 +7,12 @@ import { User } from "../../shared/services/user";
 import { GreetingsService } from 'src/app/greetings.service';
 import { Greetings } from 'src/app/models/greetings.model';
 import * as moment from 'moment';
-import {NgbModal, ModalDismissReasons, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { GreetingDeleteModalComponent } from '../greeting-delete-modal/greeting-delete-modal.component';
+import { FileUploadService } from 'src/app/file-upload.service';
+import { FileUpload } from 'src/app/models/files.model';
+import { map } from 'rxjs/operators';
+
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
@@ -19,23 +24,36 @@ export class AdminDashboardComponent implements OnInit {
   greetingsList: Array<Greetings> = [];
   title = 'Uwaga!';
   closeResult: string;
-  modalOptions:NgbModalOptions;
+  modalOptions: NgbModalOptions;
   // ngb pagination
   page: number = 1;
   pageSize: number = 10;
 
+  fileUploadForm: FormGroup;
+  selectedFiles: FileList;
+  currentFileUpload: FileUpload;
+  percentage: number;
+  fileUploads: any[];
 
-  constructor(public auth: AuthService, private router: Router, public greetingsService: GreetingsService, private modalService: NgbModal) {
+  constructor(public auth: AuthService, private router: Router, public greetingsService: GreetingsService, private modalService: NgbModal,
+    private uploadService: FileUploadService) {
     this.modalOptions = {
-      backdrop:'static',
-      backdropClass:'customBackdrop'
+      backdrop: 'static',
+      backdropClass: 'customBackdrop'
     }
   }
 
   ngOnInit(): void {
+
+    this.fileUploadForm = new FormGroup({
+      file: new FormControl(null, Validators.required),
+      description: new FormControl("", Validators.required),
+    });
+
     this.getUserInfo();
     this.getGreetings();
     moment.locale('pl');
+    this.getFileList();
   }
 
   getGreetings() {
@@ -57,7 +75,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   deleteGreeting(greeting, modalContent?) {
-    this.modalService.open(modalContent, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(modalContent, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       console.log('Greeting delete confirmation modal accept: ', result);
       this.greetingsService.deleteGreeting(greeting).then(result => {
         console.log('Delete greeting result: ', result);
@@ -67,7 +85,7 @@ export class AdminDashboardComponent implements OnInit {
     }, (reason) => {
       console.log('Greeting delete confirmation modal dismissed: ', reason);
     })
-    
+
   }
 
   sortGreetingsByDate(greetingsArray) {
@@ -80,7 +98,7 @@ export class AdminDashboardComponent implements OnInit {
     var currentDate = moment();
     var diff = currentDate.diff(moment.unix(date), 'h')
 
-    if(diff <= 5) return true;
+    if (diff <= 5) return true;
     else return false;
   }
 
@@ -104,6 +122,38 @@ export class AdminDashboardComponent implements OnInit {
     this.modalService.open(GreetingDeleteModalComponent);
   }
 
-  
+  // operations with files 
+
+  selectFile(event): void {
+    this.selectedFiles = event.target.files;
+  }
+
+  upload(): void {
+    const file = this.selectedFiles.item(0);
+    this.selectedFiles = undefined;
+
+    this.currentFileUpload = new FileUpload(file);
+    this.uploadService.pushFileToStorage(this.currentFileUpload, this.fileUploadForm.get('description').value).subscribe(
+      percentage => {
+        this.percentage = Math.round(percentage);
+        this.getFileList();
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  getFileList() {
+    this.uploadService.getFiles(6).snapshotChanges().pipe(
+      map(changes =>
+        // store the key
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    ).subscribe(fileUploads => {
+      this.fileUploads = fileUploads;
+      console.log('FileUploads: ', this.fileUploads);
+    });
+  }
 
 }

@@ -40,13 +40,14 @@
                         <td><i>{{greeting?.text}}</i></td>
                         <td>{{parseDate(greeting?.date?.seconds)}} (<span
                                 style="font-weight: bold;">{{parseDateFromNow(greeting?.date?.seconds)}}</span>)</td>
-                        <td style="font-weight: bold;">
+                        <td class="text-center" style="font-weight: bold;">
                             <button (click)="changeGreetingStatus(greeting)"
-                                [ngStyle]="{'color': greeting?.active ? 'darkgreen' : 'red'}" class="btn btn-light"
+                                [ngStyle]="{'color': greeting?.active ? 'darkgreen' : 'red'}"
+                                class="btn btn-light btn-sm"
                                 ngbTooltip="Kliknij, aby zmienić widoczność pozdrowienia">{{greeting?.active}} </button>
                         </td>
-                        <td>
-                            <button (click)="deleteGreeting(greeting, modalContent)" class="btn btn-danger"
+                        <td class="text-center">
+                            <button (click)="deleteGreeting(greeting, modalContent)" class="btn btn-danger btn-sm"
                                 ngbTooltip="Kliknij, aby usunąć pozdrowienie">Usuń</button>
                         </td>
                     </tr>
@@ -58,6 +59,50 @@
         <div class="col col-12 justify-content-center">
             <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="greetingsList.length">
             </ngb-pagination>
+        </div>
+    </div>
+    <!-- Files management -->
+    <div class="row">
+        <div class="col col-12 form-group">
+            <div class="card">
+                <div class="card-header">
+                    Dodawanie płyty tygodnia
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="fileUploadForm" (ngSubmit)="upload()">
+                        <div class="form-group">
+                            <p>Zdjęcie okładki: </p>
+                            <input type="file" formControlName="file" class="text-nowrap text-truncate"
+                                (change)="selectFile($event)" ngbTooltip="Kliknij, aby wybrać plik z okładką płyty tygodnia" />
+                        </div>
+                        <div class="form-group">
+                            <p>Opis płyty tygodnia: </p>
+                            <textarea style="width: 100%" formControlName="description" rows="3" ngbTooltip="Wpisz opis płyty tygodnia"></textarea>
+                        </div>
+                        <div *ngIf="currentFileUpload" style="margin: 10px;" class="progress mt-2">
+                            <div class="progress-bar progress-bar-info" role="progressbar" attr.aria-valuenow="{{ percentage }}"
+                                aria-valuemin="0" aria-valuemax="100" [ngStyle]="{ width: percentage + '%' }">
+                                {{ percentage }}%
+                            </div>
+                        </div>
+                        <p *ngIf="percentage === 100">Plik został wysłany</p>
+                        <div class="form-group text-right">
+                            <button type=submit class="btn btn-success btn-sm" [disabled]="!fileUploadForm.valid" ngbTooltip="Kliknij, aby dodać płytę tygodnia">
+                                Dodaj
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">Lista okładek</div>
+                <ul class="list-group list-group-flush" *ngFor="let file of fileUploads">
+                    <li class="list-group-item">
+                        <app-upload-details [fileUpload]='file'></app-upload-details>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

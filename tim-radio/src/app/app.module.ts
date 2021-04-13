@@ -26,6 +26,9 @@ import { AdminForgotPasswordComponent } from './admin/admin-forgot-password/admi
 import { AdminVerifyEmailComponent } from './admin/admin-verify-email/admin-verify-email.component';
 import { AuthService } from './auth/auth.service';
 import { GreetingDeleteModalComponent } from './admin/greeting-delete-modal/greeting-delete-modal.component';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { UploadDetailsComponent } from './admin/upload-details/upload-details.component';
 
 
 @NgModule({
@@ -40,7 +43,8 @@ import { GreetingDeleteModalComponent } from './admin/greeting-delete-modal/gree
     AdminRegisterComponent,
     AdminForgotPasswordComponent,
     AdminVerifyEmailComponent,
-    GreetingDeleteModalComponent
+    GreetingDeleteModalComponent,
+    UploadDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,9 @@ import { GreetingDeleteModalComponent } from './admin/greeting-delete-modal/gree
     HttpClientModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    NgMarqueeModule
+    NgMarqueeModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule
   ],
   providers: [
     Title,
