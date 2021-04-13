@@ -1,3 +1,5 @@
+import { map } from 'rxjs/operators';
+import { FileUploadService } from 'src/app/file-upload.service';
 import { GreetingsService } from './../greetings.service';
 import { Greetings } from './../models/greetings.model';
 import { Router } from '@angular/router';
@@ -16,6 +18,7 @@ import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angula
 import * as moment from 'moment';
 import * as firebase from 'firebase';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { CdOfTheWeek } from '../models/cdOfTheWeek.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -31,13 +34,14 @@ export class DashboardComponent implements OnInit {
   submitted = false;
   greetingsModel: Greetings;
   greetingsList: Array<Greetings> = [];
+  cdOfTheWeek: Array<CdOfTheWeek> = [];
 
   greetingsRef: AngularFireList<any>;
   greetingRef: AngularFireObject<any>;
 
   constructor(private radioProgram: RadioProgramService, public auth: AuthService, private router: Router,
     private formBuilder: FormBuilder, public greetingsService: GreetingsService, private greetingService: GreetingsService,
-    private modalService: NgbModal) { }
+    private modalService: NgbModal, public fileUploadService: FileUploadService) { }
 
   ngOnInit(): void {
 
@@ -57,7 +61,7 @@ export class DashboardComponent implements OnInit {
     });
 
     this.getGreetings();
-
+    this.getCdOfTheWeek();
     // console.log('this logged in: ', this.auth.isLoggedIn);
     // this.getServerData();
 
@@ -75,6 +79,18 @@ export class DashboardComponent implements OnInit {
       })
       console.log(this.greetingsList)
     })
+  }
+
+  getCdOfTheWeek() {
+    this.fileUploadService.getCdOfTheWeek().subscribe((data: any) => {
+      this.cdOfTheWeek = (data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          ...e.payload.doc.data()
+        } as CdOfTheWeek
+      }))
+      console.log('CD of the week: ', this.cdOfTheWeek)
+    });
   }
 
   getServerData() {

@@ -65,4 +65,8 @@ export class FileUploadService {
     storageRef.child(name).delete();
   }
 
+  getCdOfTheWeek() {
+    return this.firestore.collection('cd-of-the-week').snapshotChanges();
+  }
+
 }

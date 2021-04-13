@@ -157,12 +157,44 @@
   </div>
 </section>
 
-<section id="whats-played" class="py-5">
-  <div class="container text-center">
-    <h1>Ramówka</h1>
+<section id="whats-played">
+  
+  <div class="d-md-flex our-djs-left h-md-100 align-items-center">
+    <div class="col-md-6 p-0 bg-primary h-md-100">
+      <div class="d-md-flex align-items-center h-100 text-center justify-content-center">
+        <div class="card">
+          <div class="card-header">
+            <h1 class="display-4 font-weight-light">Ramówka</h1>
+          </div>
+          <div class="card-body">
+            <div class="text-left" *ngFor="let program of radioProgramModel" style="color: black;">
+              <p><b>Poniedziałek: </b>{{program.monday}}</p>
+              <p><b>Wtorek: </b>{{program.tuesday}}</p>
+              <p><b>Środa: </b>{{program.wednesday}}</p>
+              <p><b>Czwartek: </b>{{program.thursday}}</p>
+              <p><b>Piątek: </b>{{program.friday}}</p>
+              <p><b>Sobota: </b>{{program.saturday}}</p>
+              <p><b>Niedziela: </b>{{program.sunday}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-6 p-0 bg-primary h-md-100">
+      <div class="d-md-flex align-items-center h-100 text-center justify-content-center">
+        <div *ngIf="cdOfTheWeek?.length !== 0" class="">
+          <h1 class="display-4 font-weight-light text-white">Płyta tygodnia</h1>
+          <img style="width: 40%; height: auto; border: none;" [src]="cdOfTheWeek[0].url" alt="">
+          <p style="color: white; margin: 10px"><i>{{cdOfTheWeek[0].description}}</i></p>
+        </div>
+        <div *ngIf="cdOfTheWeek?.length === 0">Płyta tygodnia nie została jeszcze wybrana.</div>
+      </div>
+    </div>
+  </div>
 
 
-    <div *ngFor="let program of radioProgramModel" class="accordion" id="accordionExample">
+  <!-- <div *ngFor="let program of radioProgramModel" class="accordion" id="accordionExample">
       <div class="card bg-dark text-white">
         <div class="card-header" id="headingOne">
           <h2 class="mb-0">
@@ -269,8 +301,7 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </div> -->
 
 </section>
 
