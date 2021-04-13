@@ -16,10 +16,16 @@
     </div>
 </nav>
 
-<div class="container">
-    <div class="row h-100">
+<div style="margin-top: 100px;" class="container">
+
+    <button class="btn btn-info" style="margin: 10px;" (click)="changeContentVisibility()">Pozdrowienia</button>
+    <button class="btn btn-info" (click)="changeContentVisibility()">Płyta tygodnia</button>
+
+    <div class="divider" style="border: 1px; background-color: lightslategray; margin-bottom: 10px;"></div>
+
+    <div *ngIf="isGreetingsVisible" class="row h-100">
         <div class="col col-12">
-            <p style="background-color: lightgreen; margin-top: 100px; width: 20vw; text-align: center;">Dodane w ciągu
+            <p style="background-color: lightgreen; width: 20vw; text-align: center;">Dodane w ciągu
                 ostatnich 5h</p>
             <table class="table">
                 <thead>
@@ -54,15 +60,14 @@
                 </tbody>
             </table>
         </div>
-    </div>
-    <div class="row">
         <div class="col col-12 justify-content-center">
             <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="greetingsList.length">
             </ngb-pagination>
         </div>
     </div>
+
     <!-- Files management -->
-    <div class="row">
+    <div *ngIf="isUploadFileVisible" class="row">
         <div class="col col-12 form-group">
             <div class="card">
                 <div class="card-header">
@@ -73,21 +78,25 @@
                         <div class="form-group">
                             <p>Zdjęcie okładki: </p>
                             <input type="file" formControlName="file" class="text-nowrap text-truncate"
-                                (change)="selectFile($event)" ngbTooltip="Kliknij, aby wybrać plik z okładką płyty tygodnia" />
+                                (change)="selectFile($event)"
+                                ngbTooltip="Kliknij, aby wybrać plik z okładką płyty tygodnia" />
                         </div>
                         <div class="form-group">
                             <p>Opis płyty tygodnia: </p>
-                            <textarea style="width: 100%" formControlName="description" rows="3" ngbTooltip="Wpisz opis płyty tygodnia"></textarea>
+                            <textarea style="width: 100%" formControlName="description" rows="3"
+                                ngbTooltip="Wpisz opis płyty tygodnia"></textarea>
                         </div>
                         <div *ngIf="currentFileUpload" style="margin: 10px;" class="progress mt-2">
-                            <div class="progress-bar progress-bar-info" role="progressbar" attr.aria-valuenow="{{ percentage }}"
-                                aria-valuemin="0" aria-valuemax="100" [ngStyle]="{ width: percentage + '%' }">
+                            <div class="progress-bar progress-bar-info" role="progressbar"
+                                attr.aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100"
+                                [ngStyle]="{ width: percentage + '%' }">
                                 {{ percentage }}%
                             </div>
                         </div>
                         <p *ngIf="percentage === 100">Plik został wysłany</p>
                         <div class="form-group text-right">
-                            <button type=submit class="btn btn-success btn-sm" [disabled]="!fileUploadForm.valid" ngbTooltip="Kliknij, aby dodać płytę tygodnia">
+                            <button type=submit class="btn btn-success btn-sm" [disabled]="!fileUploadForm.valid"
+                                ngbTooltip="Kliknij, aby dodać płytę tygodnia">
                                 Dodaj
                             </button>
                         </div>

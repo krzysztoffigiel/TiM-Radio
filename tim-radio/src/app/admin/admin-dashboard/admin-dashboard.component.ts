@@ -35,6 +35,9 @@ export class AdminDashboardComponent implements OnInit {
   percentage: number;
   fileUploads: any[];
 
+  isGreetingsVisible: boolean = true;
+  isUploadFileVisible: boolean = false;
+
   constructor(public auth: AuthService, private router: Router, public greetingsService: GreetingsService, private modalService: NgbModal,
     private uploadService: FileUploadService) {
     this.modalOptions = {
@@ -155,5 +158,12 @@ export class AdminDashboardComponent implements OnInit {
       console.log('FileUploads: ', this.fileUploads);
     });
   }
+
+  changeContentVisibility() {
+    this.isGreetingsVisible = !this.isGreetingsVisible;
+    this.isUploadFileVisible = !this.isUploadFileVisible;
+  }
+
+
 
 }
