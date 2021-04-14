@@ -197,6 +197,7 @@ export class AdminDashboardComponent implements OnInit {
     this.isGreetingsVisible = false;
     this.isUploadFileVisible = false;
     this.isRadioProgramVisible = true;
+    this.setRadioProgramForm();
   }
 
   updateRadioProgram() {
@@ -211,4 +212,24 @@ export class AdminDashboardComponent implements OnInit {
     );
   }
 
+  setRadioProgramForm() {
+    this.radioProgramService.getRadioProgram().subscribe((data: any) => {
+      this.radioProgram = (data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          ...e.payload.doc.data()
+        } as RadioProgram
+      }))
+      this.radioProgramForm.patchValue({
+        monday: this.radioProgram[0].monday,
+        tuesday: this.radioProgram[0].tuesday,
+        wednesday: this.radioProgram[0].wednesday,
+        thursday: this.radioProgram[0].thursday,
+        friday: this.radioProgram[0].friday,
+        saturday: this.radioProgram[0].saturday,
+        sunday: this.radioProgram[0].sunday,
+      });
+      console.log('Radio Program: ', this.radioProgram)
+    })
+  }
 }

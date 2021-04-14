@@ -80,10 +80,10 @@
                 <div class="card-body">
                     <form [formGroup]="fileUploadForm" (ngSubmit)="upload()">
                         <div class="form-group">
-                            <p>Zdjęcie okładki: </p>
+                            <p>Zdjęcie okładki (w kwadracie): </p>
                             <input type="file" formControlName="file" class="text-nowrap text-truncate"
                                 (change)="selectFile($event)"
-                                ngbTooltip="Kliknij, aby wybrać plik z okładką płyty tygodnia" />
+                                ngbTooltip="Kliknij, aby wybrać plik z okładką płyty tygodnia (w kwadracie)" />
                         </div>
                         <div class="form-group">
                             <p>Tytuł płyty:</p>
