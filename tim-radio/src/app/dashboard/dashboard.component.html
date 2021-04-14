@@ -68,7 +68,7 @@
     <div class="col-md-6 p-0 bg-danger h-md-100">
       <div class="d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
         <div class="pt-5 pb-5">
-          <h1 class="display-4 font-weight-light text-white">Nasz skład</h1>
+          <h1 class="display-5 font-weight-light text-white">Nasz skład</h1>
           <p class="text-white our-djs-description">Zespół TiM Radio to ludzie z wieloletnim doświadczeniem w branży
             muzycznej.
             Tworzą go osoby z pasją do muzyki, dzieląc się nią z słuchaczami każdego dnia. </p>
@@ -158,15 +158,37 @@
 </section>
 
 <section id="whats-played">
-  
+
   <div class="d-md-flex our-djs-left h-md-100 align-items-center">
-    <div class="col-md-6 p-0 bg-primary h-md-100">
+    <div class="col-md-6 p-0 h-md-100" style="background-color: black;">
       <div class="d-md-flex align-items-center h-100 text-center justify-content-center">
         <div class="card">
           <div class="card-header">
-            <h1 class="display-4 font-weight-light">Ramówka</h1>
+            <h1 class="display-5 font-weight-light">Ramówka</h1>
           </div>
           <div class="card-body">
+            <!-- <table class="table table-dark">
+              <thead>
+                <th>PN</th>
+                <th>WT</th>
+                <th>ŚR</th>
+                <th>CZ</th>
+                <th>PT</th>
+                <th>SB</th>
+                <th>ND</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let program of radioProgramModel">
+                  <td><b>Poniedziałek: </b>{{program.monday}}</td>
+                  <td><b>Wtorek: </b>{{program.tuesday}}</td>
+                  <td><b>Środa: </b>{{program.wednesday}}</td>
+                  <td><b>Czwartek: </b>{{program.thursday}}</td>
+                  <td><b>Piątek: </b>{{program.friday}}</td>
+                  <td><b>Sobota: </b>{{program.saturday}}</td>
+                  <td><b>Niedziela: </b>{{program.sunday}}</td>
+                </tr>
+              </tbody>
+            </table> -->
             <div class="text-left" *ngFor="let program of radioProgramModel" style="color: black;">
               <p><b>Poniedziałek: </b>{{program.monday}}</p>
               <p><b>Wtorek: </b>{{program.tuesday}}</p>
@@ -180,15 +202,17 @@
         </div>
       </div>
     </div>
-    
-    <div class="col-md-6 p-0 bg-primary h-md-100">
+
+    <div class="col-md-6 p-0 h-md-100" style="background-color: black;">
       <div class="d-md-flex align-items-center h-100 text-center justify-content-center">
         <div *ngIf="cdOfTheWeek?.length !== 0" class="">
-          <h1 class="display-4 font-weight-light text-white">Płyta tygodnia</h1>
+          <h1 class="display-5 font-weight-light text-white">Płyta tygodnia</h1>
           <img style="width: 40%; height: auto; border: none;" [src]="cdOfTheWeek[0].url" alt="">
-          <p style="color: white; margin: 10px"><i>{{cdOfTheWeek[0].description}}</i></p>
+          <p style="color: white; margin: 10px"><b>{{cdOfTheWeek[0]?.title}}</b></p>
+          <p style="color: white; margin: 10px"><i>{{cdOfTheWeek[0]?.description}}</i></p>
         </div>
-        <div *ngIf="cdOfTheWeek?.length === 0">Płyta tygodnia nie została jeszcze wybrana.</div>
+        <div style="color: white; margin: 10px" *ngIf="cdOfTheWeek?.length === 0">Płyta tygodnia nie została jeszcze
+          wybrana.</div>
       </div>
     </div>
   </div>

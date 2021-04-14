@@ -50,6 +50,7 @@ export class AdminDashboardComponent implements OnInit {
 
     this.fileUploadForm = new FormGroup({
       file: new FormControl(null, Validators.required),
+      title: new FormControl("", Validators.required),
       description: new FormControl("", Validators.required),
     });
 
@@ -136,7 +137,7 @@ export class AdminDashboardComponent implements OnInit {
     this.selectedFiles = undefined;
 
     this.currentFileUpload = new FileUpload(file);
-    this.uploadService.pushFileToStorage(this.currentFileUpload, this.fileUploadForm.get('description').value).subscribe(
+    this.uploadService.pushFileToStorage(this.currentFileUpload, this.fileUploadForm.get('title').value, this.fileUploadForm.get('description').value).subscribe(
       percentage => {
         this.percentage = Math.round(percentage);
         this.getFileList();

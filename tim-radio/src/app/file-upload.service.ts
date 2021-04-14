@@ -16,7 +16,7 @@ export class FileUploadService {
 
   constructor(private db: AngularFireDatabase, private storage: AngularFireStorage, private firestore: AngularFirestore) { }
 
-  pushFileToStorage(fileUpload: FileUpload, description?: string): Observable<number> {
+  pushFileToStorage(fileUpload: FileUpload, title?: string, description?: string): Observable<number> {
     const filePath = `${this.basePath}/${fileUpload.file.name}`;
     const storageRef = this.storage.ref(filePath);
     const uploadTask = this.storage.upload(filePath, fileUpload.file);
@@ -27,7 +27,7 @@ export class FileUploadService {
           fileUpload.url = downloadURL;
           fileUpload.name = fileUpload.file.name;
           this.saveFileData(fileUpload);
-          this.updateCdOfTheWeek(downloadURL, description);
+          this.updateCdOfTheWeek(downloadURL, title, description);
         })
       })
     ).subscribe();
@@ -38,9 +38,9 @@ export class FileUploadService {
     this.db.list(this.basePath).push(fileUpload);
   }
 
-  updateCdOfTheWeek(downloadURL: string, description?: string) {
+  updateCdOfTheWeek(downloadURL: string, title?: string, description?: string) {
     console.log('FileUpload from updateCD method: ', downloadURL)
-    return this.firestore.collection('cd-of-the-week').doc('vow6G0DWV7nzgO9FNta6').update({ url: downloadURL, description: description });
+    return this.firestore.collection('cd-of-the-week').doc('vow6G0DWV7nzgO9FNta6').update({ url: downloadURL, title: title, description: description});
   }
 
   getFiles(numberItems): AngularFireList<FileUpload> {
