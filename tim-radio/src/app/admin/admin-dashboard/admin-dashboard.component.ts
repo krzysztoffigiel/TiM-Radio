@@ -1,3 +1,4 @@
+import { RadioProgram } from './../../radio-program.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 // import { User } from './../../user.model';
@@ -12,6 +13,7 @@ import { GreetingDeleteModalComponent } from '../greeting-delete-modal/greeting-
 import { FileUploadService } from 'src/app/file-upload.service';
 import { FileUpload } from 'src/app/models/files.model';
 import { map } from 'rxjs/operators';
+import { RadioProgramService } from 'src/app/radio-program.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -25,21 +27,30 @@ export class AdminDashboardComponent implements OnInit {
   title = 'Uwaga!';
   closeResult: string;
   modalOptions: NgbModalOptions;
+
+  // forms
+  fileUploadForm: FormGroup;
+  radioProgramForm: FormGroup;
+
   // ngb pagination
   page: number = 1;
   pageSize: number = 10;
 
-  fileUploadForm: FormGroup;
+  // file management
   selectedFiles: FileList;
   currentFileUpload: FileUpload;
   percentage: number;
   fileUploads: any[];
 
+  radioProgram: RadioProgram;
+
+  // tabs visibility
   isGreetingsVisible: boolean = true;
   isUploadFileVisible: boolean = false;
+  isRadioProgramVisible: boolean = false;
 
   constructor(public auth: AuthService, private router: Router, public greetingsService: GreetingsService, private modalService: NgbModal,
-    private uploadService: FileUploadService) {
+    private uploadService: FileUploadService, private radioProgramService: RadioProgramService) {
     this.modalOptions = {
       backdrop: 'static',
       backdropClass: 'customBackdrop'
@@ -52,6 +63,16 @@ export class AdminDashboardComponent implements OnInit {
       file: new FormControl(null, Validators.required),
       title: new FormControl("", Validators.required),
       description: new FormControl("", Validators.required),
+    });
+
+    this.radioProgramForm = new FormGroup({
+      monday: new FormControl("", Validators.required),
+      tuesday: new FormControl("", Validators.required),
+      wednesday: new FormControl("", Validators.required),
+      thursday: new FormControl("", Validators.required),
+      friday: new FormControl("", Validators.required),
+      saturday: new FormControl("", Validators.required),
+      sunday: new FormControl("", Validators.required),
     });
 
     this.getUserInfo();
@@ -163,13 +184,31 @@ export class AdminDashboardComponent implements OnInit {
   changeGreetingsVisibility() {
     this.isGreetingsVisible = true;
     this.isUploadFileVisible = false;
+    this.isRadioProgramVisible = false;
   }
 
   changeUploadFileVisibility() {
     this.isGreetingsVisible = false;
     this.isUploadFileVisible = true;
+    this.isRadioProgramVisible = false;
   }
 
+  changeRadioProgramVisibility() {
+    this.isGreetingsVisible = false;
+    this.isUploadFileVisible = false;
+    this.isRadioProgramVisible = true;
+  }
 
+  updateRadioProgram() {
+    this.radioProgramService.updateRadioProgram(
+      this.radioProgramForm.get('monday').value,
+      this.radioProgramForm.get('tuesday').value,
+      this.radioProgramForm.get('wednesday').value,
+      this.radioProgramForm.get('thursday').value,
+      this.radioProgramForm.get('friday').value,
+      this.radioProgramForm.get('saturday').value,
+      this.radioProgramForm.get('sunday').value
+    );
+  }
 
 }

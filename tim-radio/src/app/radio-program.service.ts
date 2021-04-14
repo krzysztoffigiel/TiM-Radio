@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import 'firebase/firestore';
+import { RadioProgram } from './radio-program.model';
 
 const headerDict = {
   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
@@ -32,6 +33,18 @@ export class RadioProgramService {
 
   getServerData() {
     return this.httpClient.get(this.REST_API_SERVER_URL, requestOptions);
+  }
+
+  updateRadioProgram(monday: string, tuesday: string, wednesday: string, thursday: string, friday: string, saturday: string, sunday: string) {
+    return this.firestore.collection('radio-program').doc('9jtt6pkxdY6nVp2sbgWq').update({ 
+      monday: monday, 
+      tuesday: tuesday, 
+      wednesday: wednesday, 
+      thursday: thursday,
+      friday: friday,
+      saturday: saturday,
+      sunday: sunday 
+    });
   }
 
 }

@@ -18,8 +18,12 @@
 
 <div style="margin-top: 100px;" class="container">
 
-    <button class="btn btn-info" style="margin: 10px;" (click)="changeGreetingsVisibility()">Pozdrowienia</button>
-    <button class="btn btn-info" (click)="changeUploadFileVisibility()">Płyta tygodnia</button>
+    <button class="btn btn-info" style="margin: 10px;" (click)="changeGreetingsVisibility()"
+        ngbTooltip="Kliknij, aby przejść do panelu pozdrowień">Pozdrowienia</button>
+    <button class="btn btn-info" style="margin-right: 10px;" (click)="changeUploadFileVisibility()"
+        ngbTooltip="Kliknij, aby przejść do panelu płyty tygodnia">Płyta tygodnia</button>
+    <button class="btn btn-info" (click)="changeRadioProgramVisibility()"
+        ngbTooltip="Kliknij, aby przejść do panelu ramówki">Ramówka</button>
 
     <div class="divider" style="border: 1px; background-color: lightslategray; margin-bottom: 10px;"></div>
 
@@ -118,6 +122,55 @@
             </div>
         </div>
     </div>
+
+    <div *ngIf="isRadioProgramVisible" class="row">
+        <div class="col col-12">
+            <div class="card">
+                <div class="card-header">
+                    Dodawanie ramówki
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="radioProgramForm" (ngSubmit)="updateRadioProgram()">
+                        <div class="form-group">
+                            <p>Poniedziałek: </p>
+                            <input class="w-100" type="text" formControlName="monday" ngbTooltip="Wpisz ramówkę na poniedziałek">
+                        </div>
+                        <div class="form-group">
+                            <p>Wtorek: </p>
+                            <input class="w-100" type="text" formControlName="tuesday" ngbTooltip="Wpisz ramówkę na wtorek">
+                        </div>
+                        <div class="form-group">
+                            <p>Środa: </p>
+                            <input class="w-100" type="text" formControlName="wednesday" ngbTooltip="Wpisz ramówkę na środę">
+                        </div>
+                        <div class="form-group">
+                            <p>Czwartek: </p>
+                            <input class="w-100" type="text" formControlName="thursday" ngbTooltip="Wpisz ramówkę na czwartek">
+                        </div>
+                        <div class="form-group">
+                            <p>Piątek: </p>
+                            <input class="w-100" type="text" formControlName="friday" ngbTooltip="Wpisz ramówkę na piątek">
+                        </div>
+                        <div class="form-group">
+                            <p>Sobota: </p>
+                            <input class="w-100" type="text" formControlName="saturday" ngbTooltip="Wpisz ramówkę na sobotę">
+                        </div>
+                        <div class="form-group">
+                            <p>Niedziela: </p>
+                            <input class="w-100" type="text" formControlName="sunday" ngbTooltip="Wpisz ramówkę na niedzielę">
+                        </div>
+                        <div class="text-right w-100">
+                            <button type=submit class="btn btn-success btn-sm" [disabled]="!radioProgramForm.valid"
+                                ngbTooltip="Kliknij, aby zaktualizować ramówkę">
+                                Dodaj
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <ng-template #modalContent let-modal>
