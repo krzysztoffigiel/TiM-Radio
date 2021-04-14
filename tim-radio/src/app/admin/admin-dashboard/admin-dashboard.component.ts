@@ -14,6 +14,7 @@ import { FileUploadService } from 'src/app/file-upload.service';
 import { FileUpload } from 'src/app/models/files.model';
 import { map } from 'rxjs/operators';
 import { RadioProgramService } from 'src/app/radio-program.service';
+import { CdOfTheWeek } from 'src/app/models/cdOfTheWeek.model';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -43,6 +44,7 @@ export class AdminDashboardComponent implements OnInit {
   fileUploads: any[];
 
   radioProgram: RadioProgram;
+  cdOfTheWeek: CdOfTheWeek;
 
   // tabs visibility
   isGreetingsVisible: boolean = true;
@@ -79,6 +81,7 @@ export class AdminDashboardComponent implements OnInit {
     this.getGreetings();
     moment.locale('pl');
     this.getFileList();
+    this.getCdOfTheWeek();
   }
 
   getGreetings() {
@@ -191,6 +194,7 @@ export class AdminDashboardComponent implements OnInit {
     this.isGreetingsVisible = false;
     this.isUploadFileVisible = true;
     this.isRadioProgramVisible = false;
+    this.getCdOfTheWeek();
   }
 
   changeRadioProgramVisibility() {
@@ -231,5 +235,17 @@ export class AdminDashboardComponent implements OnInit {
       });
       console.log('Radio Program: ', this.radioProgram)
     })
+  }
+
+  getCdOfTheWeek() {
+    this.uploadService.getCdOfTheWeek().subscribe((data: any) => {
+      this.cdOfTheWeek = (data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          ...e.payload.doc.data()
+        } as CdOfTheWeek
+      }))
+      console.log('CD of the week: ', this.cdOfTheWeek)
+    });
   }
 }

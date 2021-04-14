@@ -80,10 +80,21 @@
                 <div class="card-body">
                     <form [formGroup]="fileUploadForm" (ngSubmit)="upload()">
                         <div class="form-group">
-                            <p>Zdjęcie okładki (w kwadracie): </p>
-                            <input type="file" formControlName="file" class="text-nowrap text-truncate"
-                                (change)="selectFile($event)"
-                                ngbTooltip="Kliknij, aby wybrać plik z okładką płyty tygodnia (w kwadracie)" />
+                            <div class="row">
+                                <div class="col col-6">
+                                    <p>Zdjęcie okładki (w kwadracie): </p>
+                                    <input type="file" formControlName="file" class="text-nowrap text-truncate"
+                                        (change)="selectFile($event)"
+                                        ngbTooltip="Kliknij, aby wybrać plik z okładką płyty tygodnia (w kwadracie)" />
+                                </div>
+                                <div class="col col-6 text-center">
+                                    <p>Aktualna okładka:</p>
+                                    <img [src]="cdOfTheWeek[0].url" alt="" style="height: 10vh; width: auto;">
+                                    <p><b>{{cdOfTheWeek[0]?.title}}</b></p>
+                                    <p><i>{{cdOfTheWeek[0]?.description}}</i></p>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="form-group">
                             <p>Tytuł płyty:</p>
@@ -162,7 +173,7 @@
                         <div class="text-right w-100">
                             <button type=submit class="btn btn-success btn-sm" [disabled]="!radioProgramForm.valid"
                                 ngbTooltip="Kliknij, aby zaktualizować ramówkę">
-                                Dodaj
+                                Aktualizuj
                             </button>
                         </div>
                     </form>
