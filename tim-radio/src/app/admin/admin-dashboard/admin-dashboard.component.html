@@ -24,6 +24,7 @@
         ngbTooltip="Kliknij, aby przejść do panelu płyty tygodnia">Płyta tygodnia</button>
     <button class="btn btn-info" (click)="changeRadioProgramVisibility()"
         ngbTooltip="Kliknij, aby przejść do panelu ramówki">Ramówka</button>
+        
 
     <div class="divider" style="border: 1px; background-color: lightslategray; margin-bottom: 10px;"></div>
 
@@ -89,7 +90,7 @@
                                 </div>
                                 <div class="col col-6 text-center">
                                     <p>Aktualna okładka:</p>
-                                    <img [src]="cdOfTheWeek[0].url" alt="" style="height: 10vh; width: auto;">
+                                    <img [src]="cdOfTheWeek[0]?.url" alt="" style="height: 10vh; width: auto;">
                                     <p><b>{{cdOfTheWeek[0]?.title}}</b></p>
                                     <p><i>{{cdOfTheWeek[0]?.description}}</i></p>
                                 </div>
