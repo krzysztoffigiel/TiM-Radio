@@ -32,7 +32,7 @@
     "auth0-js": "^9.13.2",
     "cors": "^2.8.5",
     "firebase": "^7.13.1",
-    "moment": "^2.29.1",
+    "moment": "^2.29.4",
     "ng-marquee": "^9.5.0",
     "ngx-page-scroll-core": "^7.0.1",
     "rxjs": "~6.5.4",
